@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Quiz{% endblock %}
+
+{% block body %}
+    <div class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 150px;margin-left: 150px;width: 100%">
+
+        <div class="table--no-card m-b-30">
+
+            <table class="table table-borderless table-striped table-earning">
+                <a href="{{ path('addQuiz') }}"><i class="arrow-back" style="font-size: 50px;"></i> </a>
+                <thead>
+                <th>Question</th>
+                <th>Reponse</th>
+                <th>Duree</th>
+                <th>ID Promotion</th>
+                <th>Modification</th>
+                <th>Suppression</th>
+                </thead>
+                <tbody>
+                {% for quiz in q %}
+                    <tr>
+                        <td>{{ quiz.question | default(0) }}</td>
+                        <td>{{ quiz.reponse | default(0) }}</td>
+                        <td>{{ quiz.duree | default(0) }}</td>
+                        <td>{{ quiz.idpromo | default(0) }}</td>
+                        <td>
+                            <a class="btn-success" href="{{ path('modify_quiz',{'id':quiz.id}) }}" >Modifier</a>
+                        </td>
+                        <td>
+                            <a class="btn-danger" href="{{ path('supp_quiz',{'id':quiz.id}) }}">Supprimer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+{% endblock %}

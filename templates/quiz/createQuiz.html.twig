@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div style="display:flex;align-items: center;justify-content: center; margin-top: 150px; padding: 10px">
+
+        <div class="card">
+            <div class="card-header">Quiz</div>
+            <div class="card-body">
+                <div class="card-title">
+                    <h3 class="text-center title-2">Ajouter un quiz</h3>
+                </div>
+                <hr>
+                {{ form_start(f,{attr:{'novalidate':'novalidate'}}) }}
+
+                <div class="form-group">
+                    <label for="cc-payment" class="control-label mb-1">Question</label>
+                    <div id="cc-pament" name="cc-payment" class="form-control">
+                        {{ form_widget(f.question,{'attr':{'class':'form-control'}}) }}
+                        {{ form_errors(f.question,{'attr':{'class':'text-danger'}}) }}
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label for="cc-payment" class="control-label mb-1">Réponse</label>
+                    <div id="cc-pament" name="cc-payment" class="form-control">
+                        {{ form_widget(f.reponse,{'attr':{'class':'form-control'}}) }}
+                        {{ form_errors(f.reponse,{'attr':{'class':'text-danger'}}) }}
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label for="cc-payment" class="control-label mb-1">Durée</label>
+                    <div id="cc-pament" name="cc-payment" class="form-control">
+                        {{ form_widget(f.duree,{'attr':{'class':'form-control'}}) }}
+                        {{ form_errors(f.duree,{'attr':{'class':'text-danger'}}) }}
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label for="cc-payment" class="control-label mb-1">ID du Promotion</label>
+                    <div id="cc-pament" name="cc-payment" class="form-control">
+                        {{ form_widget(f.idPromo,{'attr':{'placeholder':'ID'}}) }}
+                    </div>
+
+                </div>
+
+                <br/>
+                <div>
+                    <div id="payment-button"  class="btn btn-lg btn-info btn-block">
+                        <i class="fa fa-lock fa-lg"></i>&nbsp;
+                        {{ form_widget(f.ajouter,{'att':{'class':'btn btn-primary'}}) }}
+                    </div>
+                </div>
+                {{ form_end(f) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
