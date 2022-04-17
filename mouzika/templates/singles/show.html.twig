@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Singles{% endblock %}
+
+{% block body %}
+    <h1>Singles</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ single.id }}</td>
+            </tr>
+            <tr>
+                <th>Artist</th>
+                <td>{{ single.artist }}</td>
+            </tr>
+            <tr>
+                <th>SingleName</th>
+                <td>{{ single.singleName }}</td>
+            </tr>
+            <tr>
+                <th>ReleaseDate</th>
+                <td>{{ single.releaseDate ? single.releaseDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Genre</th>
+                <td>{{ single.genre }}</td>
+            </tr>
+            <tr>
+                <th>ImageSingle</th>
+                <td>{{ single.imageSingle }}</td>
+            </tr>
+            <tr>
+                <th>AudioSingle</th>
+                <td>{{ single.audioSingle }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_singles_index') }}">back to list</a>
+
+    <a href="{{ path('app_singles_edit', {'id': single.id}) }}">edit</a>
+
+    {{ include('singles/_delete_form.html.twig') }}
+{% endblock %}

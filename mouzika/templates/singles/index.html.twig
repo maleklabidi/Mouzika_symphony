@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Singles index{% endblock %}
+
+{% block body %}
+    <h1>Singles index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Artist</th>
+                <th>SingleName</th>
+                <th>ReleaseDate</th>
+                <th>Genre</th>
+                <th>ImageSingle</th>
+                <th>AudioSingle</th>
+                <th>Album</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for single in singles %}
+            <tr>
+                <td>{{ single.id }}</td>
+                <td>{{ single.artist }}</td>
+                <td>{{ single.singleName }}</td>
+                <td>{{ single.releaseDate ? single.releaseDate|date('Y-m-d') : '' }}</td>
+                <td>{{ single.genre }}</td>
+                <td>{{ single.imageSingle }}</td>
+                <td>{{ single.audioSingle }}</td>
+                <td>{{ single.albums }}</td>
+                <td>
+                    <a href="{{ path('app_singles_show', {'id': single.id}) }}">show</a>
+                    <a href="{{ path('app_singles_edit', {'id': single.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_singles_new') }}">Create new</a>
+{% endblock %}

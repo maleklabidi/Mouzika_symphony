@@ -1,0 +1,90 @@
+{% extends 'basefront.html.twig' %}
+
+{% block title %}Singles index{% endblock %}
+
+{% block body %}
+    <br><br><br><br><br><br><br><br><br><br>
+
+
+
+    <div class="youtube_video_area">
+        <div class="container-fluid p-0">
+            <div class="row no-gutters">
+                {% for single in singles %}
+                <div class="col-xl-3 col-lg-3 col-md-6">
+                    <div class="single_video">
+                        <div class="thumb">
+                            <img src="/front/img/video/1.png" alt="">
+                        </div>
+                        <div class="hover_elements">
+                            <div class="video">
+                                <a class="popup-video" href="https://www.youtube.com/watch?v=Hzmp3z6deF8">
+                                    <i class="fa fa-play"></i>
+                                </a>
+                            </div>
+
+                            <div class="hover_inner">
+                                <span>{{ single.releaseDate ? single.releaseDate|date('Y-m-d') : '' }}</span>
+                                <h3><a href="#">{{ single.artist }} - {{ single.singleName }}</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <h1>Singles index</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Artist</th>
+            <th>SingleName</th>
+            <th>ReleaseDate</th>
+            <th>Genre</th>
+            <th>ImageSingle</th>
+            <th>AudioSingle</th>
+            <th>Album</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for single in singles %}
+            <tr>
+                <td>{{ single.id }}</td>
+                <td>{{ single.artist }}</td>
+                <td>{{ single.singleName }}</td>
+                <td>{{ single.releaseDate ? single.releaseDate|date('Y-m-d') : '' }}</td>
+                <td>{{ single.genre }}</td>
+                <td>{{ single.imageSingle }}</td>
+                <td>{{ single.audioSingle }}</td>
+                <td>{{ single.albums }}</td>
+                <td>
+                    <a href="{{ path('app_singles_show', {'id': single.id}) }}">show</a>
+                    <a href="{{ path('app_singles_edit', {'id': single.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_singles_new') }}">Create new</a>
+{% endblock %}

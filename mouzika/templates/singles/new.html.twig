@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Singles{% endblock %}
+
+{% block body %}
+    <h1>Create new Singles</h1>
+
+    {{ include('singles/_form.html.twig') }}
+
+    <a href="{{ path('app_singles_index') }}">back to list</a>
+{% endblock %}

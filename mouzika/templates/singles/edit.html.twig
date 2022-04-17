@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Singles{% endblock %}
+
+{% block body %}
+    <h1>Edit Singles</h1>
+
+    {{ include('singles/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_singles_index') }}">back to list</a>
+
+    {{ include('singles/_delete_form.html.twig') }}
+{% endblock %}
