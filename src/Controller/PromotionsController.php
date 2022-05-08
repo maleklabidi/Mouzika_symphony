@@ -2,10 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\Produits;
 use App\Entity\Promotions;
 #use http\Env\Request;
+use App\Entity\PropretySearch;
+use App\Form\PropretySearchType;
+use App\Mail\MailerApi;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\PromotionsType;
@@ -16,10 +21,31 @@ class PromotionsController extends AbstractController
     /**
      * @Route("/promotions", name="display_promotion")
      */
-    public function index(): Response
+    public function index(Request $request): Response
+    {       $produits= $this->getDoctrine()->getManager()->getRepository(Produits::class)->findAll();
+            $propretySearch=new PropretySearch();
+            $form=$this->createForm(PropretySearchType::class,$propretySearch);
+            $form->handleRequest($request);
+            $promotions= $this->getDoctrine()->getManager()->getRepository(Promotions::class)->findAll();
+            if ($form->isSubmitted()&&$form->isValid()){
+                $nom=$propretySearch->getNom();
+                if($nom!="")
+                    $promotions= $this->getDoctrine()->getManager()->getRepository(Promotions::class)->findBy(['pourcentage'=>$nom]);
+                else
+                    $promotions= $this->getDoctrine()->getManager()->getRepository(Promotions::class)->findAll();
+            }
+
+        return $this->render('promotions/index.html.twig', [
+            'form'=>$form->createView(),'prod'=>$produits,'p'=>$promotions
+        ]);
+    }
+    /**
+     * @Route("/indexPromo", name="indexPromo")
+     */
+    public function indexPromo(): Response
     {
         $promotions= $this->getDoctrine()->getManager()->getRepository(Promotions::class)->findAll();
-        return $this->render('promotions/index.html.twig', [
+        return $this->render('promotions/indexfront.html.twig', [
             'p'=>$promotions
         ]);
     }
@@ -84,4 +110,17 @@ class PromotionsController extends AbstractController
         }
         return $this->render('promotions/updatePromo.html.twig',['f'=>$form->createView()]);
     }
+    /**
+     * @Route("/choixPromo", name="choixpromo")
+     */
+    public function choixPromo(): Response
+    {
+        $m = new MailerApi();
+        $m->sendEmail("appmoozika@gmail.com ", "ahmedd.abdelhedi@gmail.com", "test","test");
+        $promotions= $this->getDoctrine()->getManager()->getRepository(Promotions::class)->findAll();
+        return $this->render('promotions/choix.html.twig',['p'=>$promotions]);
+    }
+
+
+
 }

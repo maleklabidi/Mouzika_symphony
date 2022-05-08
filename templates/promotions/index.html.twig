@@ -7,7 +7,19 @@
     <div class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 150px;width: 100%">
 
         <div class="table--no-card m-b-30">
+            {{ form_start(form) }}
 
+            <div class="form-row align-items-end">
+                <div class="col">
+                   pourcentage:  {{ form_widget(form.nom,{'attr':{'class':'form-control'}}) }}
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success">Rechercher</button>
+                    </div>
+                </div>
+            </div>
+            {{ form_end(form) }}
             <table class="table table-borderless table-striped table-earning">
                 <a href="{{ path('addPromotion') }}"><i class="arrow-back" style="font-size: 50px;"></i> </a>
                 <thead>
@@ -36,6 +48,8 @@
 
                 </tbody>
             </table>
+            <br/>
+            <a class="btn-dark" style="height: 70px; margin-left: 150px" href="{{ path('addPromotion') }} ">Ajouter<i style="font-size: 50px;align-items: center;justify-content: center"></i></a>
 
         </div>
 

@@ -1,0 +1,18 @@
+{% extends 'basefront.html.twig' %}
+{% block slider %}
+    <div class="slider_area">
+        <div class="single_slider  d-flex align-items-center slider_bg_1 overlay2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="slider_text text-center ">
+                            {% for promotion in p %}
+                            <h3 style="font-size: x-large">Vous avez choisi la promotion sur le produit " " sous l'identifiant "{{ promotion.id }}" </h3>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

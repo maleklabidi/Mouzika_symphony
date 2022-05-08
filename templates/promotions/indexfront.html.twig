@@ -1,0 +1,114 @@
+{% extends 'basefront.html.twig' %}
+{% block title %}Liste des promotions{% endblock %}
+
+{% block slider %}
+    <div class="slider_area">
+        <div class="single_slider  d-flex align-items-center slider_bg_1 overlay2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="slider_text text-center ">
+                            <h3 style="font-size: x-large">Promotions </h3>
+                            <div class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 150px;width: 100%;color: white">
+
+                                <div class="table--no-card m-b-30">
+
+                                    <table class="table table-borderless table-striped table-earning">
+                                        <a href="{{ path('addPromotion') }}"><i class="arrow-back" style="font-size: 50px;"></i> </a>
+                                        <thead>
+                                        <tr>
+                                            <th>Pourcentage</th>
+                                            <th>Duree en jours</th>
+                                            <th>Nom du produit</th>
+                                            <th>Choisir Promotion</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for promotion in p %}
+
+                                            <tr>
+                                                <td>{{ promotion.pourcentage | default(0) }}</td>
+                                                <td>{{ promotion.duree | default(0) }}</td>
+                                                <td>{{ promotion.idProd | default(0) }}</td>
+                                                <td>
+                                                    <a class="btn-success" href="{{ path('choixpromo',{'id':promotion.id}) }}" >Choisir</a>
+                                                </td>
+
+                                            </tr>
+                                        {% endfor %}
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block body %}
+
+
+    {% block footer %}
+        <footer class="footer">
+            <div class="footer_top">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-xl-5 col-md-5 offset-xl-1">
+                            <div class="footer_widget">
+                                <h3 class="footer_title">
+                                    Contact Us
+                                </h3>
+                                <ul>
+                                    <li><a href="#">appmoozika@gmail.com
+                                        </a></li>
+                                    <li><a href="#">+55 555 555 555
+                                        </a></li>
+                                    <li><a href="#">Ariana, Tunisia</a></li>
+                                </ul>
+                                <div class="socail_links">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <i class=" fa fa-facebook "></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-google-plus"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-twitter"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-youtube-play"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-instagram"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </footer>{% endblock %}
+
+{% endblock %}

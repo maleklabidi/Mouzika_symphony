@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\PropretySearch;
 use App\Entity\Quiz;
+use App\Form\PropretySearchType;
 use App\Form\QuizType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,11 +16,22 @@ class QuizController extends AbstractController
     /**
      * @Route("/quiz", name="display_quiz")
      */
-    public function index(): Response
+    public function index(Request $request): Response
     {
-        $quizlist= $this->getDoctrine()->getManager()->getRepository(Quiz::class)->findAll();
+        $propretySearch=new PropretySearch();
+        $form=$this->createForm(PropretySearchType::class,$propretySearch);
+        $form->handleRequest($request);
+        $quiz= $this->getDoctrine()->getManager()->getRepository(Quiz::class)->findAll();
+        if ($form->isSubmitted()&&$form->isValid()){
+            $nom=$propretySearch->getNom();
+            if($nom!="")
+                $quiz= $this->getDoctrine()->getManager()->getRepository(Quiz::class)->findBy(['question'=>$nom]);
+            else
+                $quiz= $this->getDoctrine()->getManager()->getRepository(Quiz::class)->findAll();
+        }
+
         return $this->render('quiz/index.html.twig', [
-            'q'=>$quizlist
+            'form'=>$form->createView(),'q'=>$quiz
         ]);
     }
     /**
