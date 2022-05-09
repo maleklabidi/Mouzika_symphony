@@ -5,6 +5,9 @@
     "captcha-com/symfony-captcha-bundle": {
         "version": "4.2.12"
     },
+    "cmen/google-charts-bundle": {
+        "version": "5.0.0"
+    },
     "doctrine/annotations": {
         "version": "1.13",
         "recipe": {
@@ -547,6 +550,9 @@
             "./config/packages/twig.yaml",
             "./templates/base.html.twig"
         ]
+    },
+    "symfony/ux-chartjs": {
+        "version": "v2.1.1"
     },
     "symfony/validator": {
         "version": "4.4",

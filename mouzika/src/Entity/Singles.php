@@ -9,7 +9,7 @@ use Captcha\Bundle\CaptchaBundle\Validator\Constraints as CaptchaAssert;
  * Singles
  *
  * @ORM\Table(name="singles")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\SinglesRepository")
  */
 class Singles
 {
@@ -49,6 +49,7 @@ class Singles
      * @var string
      *
      * @ORM\Column(name="genre", type="string", length=255, nullable=false)
+     * @Assert\NotBlank (message="il faut saisir le genre du single")
      */
     private $genre;
 

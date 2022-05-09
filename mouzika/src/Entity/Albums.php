@@ -5,12 +5,13 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Albums
  *
  * @ORM\Table(name="albums")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\AlbumsRepository")
  */
 class Albums
 {
@@ -27,6 +28,7 @@ class Albums
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255, nullable=false)
+     * @Assert\NotBlank (message="il faut saisir le titre de l'album")
      */
     private $title;
 
@@ -34,6 +36,7 @@ class Albums
      * @var int
      *
      * @ORM\Column(name="number_of_songs", type="integer", nullable=false)
+     * @Assert\NotBlank (message="il faut saisir le nombre des chansons")
      */
     private $numberOfSongs;
 
@@ -55,6 +58,7 @@ class Albums
      * @var string
      *
      * @ORM\Column(name="artist", type="string", length=255, nullable=false)
+     * @Assert\NotBlank (message="il faut saisir le nom de l'artiste")
      */
     private $artist;
 

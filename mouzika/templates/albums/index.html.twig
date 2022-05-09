@@ -27,7 +27,9 @@
                 <td>{{ album.releaseDate ? album.releaseDate|date('Y-m-d') : '' }}</td>
                 <td>{{ album.genre }}</td>
                 <td>{{ album.artist }}</td>
-                <td>{{ album.imageAlbum }}</td>
+                <td>
+                    <img  src="{{ asset('/uploads/brochures/' ~ album.ImageAlbum) }}"  alt="album image" height="100" width="100">
+                </td>
                 <td>
                     <a href="{{ path('app_albums_show', {'id': album.id}) }}">show</a>
                     <a href="{{ path('app_albums_edit', {'id': album.id}) }}">edit</a>

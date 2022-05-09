@@ -1,50 +1,58 @@
 {% extends 'basefront.html.twig' %}
 
 
-{% block title %}Singles index{% endblock %}
+{% block title %}Albums index{% endblock %}
 
 {% block body %}
 
     <br><br><br><br><br><br><br><br>
 
-    <center><h1>Profitez de notre librairie de Singles chez Mouzika !</h1></center>
+    <center><h1>Profitez de notre librairie d'Albums chez Mouzika !</h1></center>
 
-    <br><br><br>
-    {% include '/singlesfront/_filter.html.twig' with {form : form} only %}
 
     <br><br><br><br>
+
+
 
 
     <div class="youtube_video_area">
         <div class="container-fluid p-0">
             <div class="row no-gutters">
-                {% for single in singles %}
-                <div class="col-xl-3 col-lg-3 col-md-6">
-                    <div class="single_video">
-                        <div class="thumb">
-                            <img  src="{{ asset('/uploads/brochures/' ~ single.ImageSingle) }}"  alt="single image" >
-                        </div>
-                        <div class="hover_elements">
-                            <div class="video">
-                                <a class="popup-video" href="{{ single.audioSingle }}" target="_blank">
-                                    <i class="fa fa-play"></i>
-                                </a>
+                {% for album in albums %}
+                    <div class="col-xl-3 col-lg-3 col-md-6">
+                        <div class="single_video">
+                            <div class="thumb">
+                                <img  src="{{ asset('/uploads/brochures/' ~ album.ImageAlbum) }}"  alt="album image" >
                             </div>
+                            <div class="hover_elements">
+                                <div class="video">
+                                    <a class="popup-video" href="https://en.wikipedia.org/wiki/Red_(Taylor_Swift_album)" target="_blank">
+                                        <i class="fa fa-play"></i>
+                                    </a>
+                                </div>
 
-                            <div class="hover_inner">
-                                <span>{{ single.releaseDate ? single.releaseDate|date('Y-m-d') : '' }}</span>
-                                <h3><a href="#">{{ single.artist }} - {{ single.singleName }}</a></h3>
+                                <div class="hover_inner">
+                                    <span>{{ album.releaseDate ? album.releaseDate|date('Y-m-d') : '' }} ~ Number of Songs: {{ album.numberOfSongs }}</span>
+                                    <h3><a href="#">{{ album.artist }} - {{ album.title }}</a></h3>
+                                    <h6 style="color:white;">Genre: {{ album.genre }}</h6>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </div> <br><br><br>
                 {% endfor %}
+<br><br><br>
+                <div id="div_chart"></div>
 
-                        </div>
-                    </div>
-                </div>
+                <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                 <script type="text/javascript">
+                     {{ gc_draw(piechart, 'div_chart') }}
+                </script>
+
             </div>
         </div>
+    </div>
+    </div>
+    </div>
     </div>
 
 

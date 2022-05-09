@@ -7,9 +7,5 @@ class searchData {
      */
     public $q;
 
-    /**
-     * @var string
-     */
-    public $p;
 
 }

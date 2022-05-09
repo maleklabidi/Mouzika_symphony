@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\Albums;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,9 +17,21 @@ class AlbumsType extends AbstractType
             ->add('title')
             ->add('numberOfSongs')
             ->add('releaseDate')
-            ->add('genre')
             ->add('artist')
-            ->add('imageAlbum')
+            ->add('genre', ChoiceType::class, [
+                'choices'  => [
+                    'Pop' => 'Pop',
+                    'Punk' => 'Punk',
+                    'Indie' => 'Indie',
+                    'Rock' => 'Rock',
+                    'Electro' => 'Electro',
+                ]])
+
+            ->add('imageAlbum', FileType::class, [
+                'label' => 'Image ',
+                'mapped' => false,
+                'required' => false,
+            ])
         ;
     }
 

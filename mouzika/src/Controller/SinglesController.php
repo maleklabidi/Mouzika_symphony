@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\data\searchData;
 use App\Entity\Singles;
+use App\Form\SearchSinglesFormType;
 use App\Form\SinglesType;
+use App\Repository\SinglesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -39,6 +42,23 @@ class SinglesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $ImageFile = $form->get('imageSingle')->getData();
+            if ($ImageFile) {
+
+                $fileName = md5(uniqid()) . '.' . $ImageFile->guessExtension();
+                try {
+                    $ImageFile->move($this->getParameter('brochures_directory'), $fileName);
+                } catch (FileException $e) {
+
+                }
+                $single->setImageSingle($fileName);
+            }
+
+
+
+
+
             $entityManager->persist($single);
             $entityManager->flush();
 
@@ -70,6 +90,18 @@ class SinglesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $ImageFile = $form->get('imageSingle')->getData();
+            if ($ImageFile) {
+
+                $fileName = md5(uniqid()) . '.' . $ImageFile->guessExtension();
+                try {
+                    $ImageFile->move($this->getParameter('brochures_directory'), $fileName);
+                } catch (FileException $e) {
+
+                }
+                $single->setImageSingle($fileName); }
+
+
             $entityManager->flush();
 
             return $this->redirectToRoute('app_singles_index', [], Response::HTTP_SEE_OTHER);
@@ -97,14 +129,14 @@ class SinglesController extends AbstractController
     /**
      * @Route("/front/singles", name="singles_front", methods={"GET"})
      */
-    public function front(EntityManagerInterface $entityManager): Response
+    public function front(EntityManagerInterface $entityManager, SinglesRepository $repo, Request $request): Response
     {
-        $singles = $entityManager
-            ->getRepository(Singles::class)
-            ->findAll();
+        $data = new searchData();
+        $form = $this->createForm(SearchSinglesFormType::class, $data);
+        $form->handleRequest($request);
+        $singles = $repo->findSearch($data);
 
         return $this->render('singlesfront/singlesfront.html.twig', [
-            'singles' => $singles,
-        ]);
+            'singles' => $singles, 'form' => $form->createView() ]);
     }
 }
