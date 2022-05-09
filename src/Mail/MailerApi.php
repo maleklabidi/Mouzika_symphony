@@ -13,7 +13,7 @@ class MailerApi
     /**
      * @throws \Symfony\Component\Mailer\Exception\TransportExceptionInterface
      */
-    public function sendEmail(string $from , string $to , string $subject,string $body ){
+    public function sendEmail(MailerInterface $mailer,string $from , string $to , string $subject,string $body ){
         $email = (new Email())
             ->from($from)
             ->to($to)
@@ -22,7 +22,7 @@ class MailerApi
 
 
 
-    //    $mailer->send($email);
+        $mailer->send($email);
 
 
     }

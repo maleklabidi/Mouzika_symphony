@@ -113,10 +113,10 @@ class PromotionsController extends AbstractController
     /**
      * @Route("/choixPromo", name="choixpromo")
      */
-    public function choixPromo(): Response
+    public function choixPromo(MailerInterface $mailer): Response
     {
         $m = new MailerApi();
-        $m->sendEmail("appmoozika@gmail.com ", "ahmedd.abdelhedi@gmail.com", "test","test");
+        $m->sendEmail($mailer,"appmoozika@gmail.com ", "ahmed.abdelhedi1@esprit.tn", "test","test");
         $promotions= $this->getDoctrine()->getManager()->getRepository(Promotions::class)->findAll();
         return $this->render('promotions/choix.html.twig',['p'=>$promotions]);
     }
