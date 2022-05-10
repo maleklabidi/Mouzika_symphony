@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2022 at 12:52 PM
+-- Generation Time: May 10, 2022 at 07:36 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -28,25 +28,14 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `albums` (
-  `id` int(8) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `number_of_songs` int(255) NOT NULL,
+  `id` int(11) NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `number_of_songs` int(11) NOT NULL,
   `release_date` date NOT NULL,
-  `genre` varchar(255) NOT NULL,
-  `artist` varchar(255) NOT NULL,
-  `image_album` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `albums`
---
-
-INSERT INTO `albums` (`id`, `title`, `number_of_songs`, `release_date`, `genre`, `artist`, `image_album`) VALUES
-(2, '256', 11, '2020-12-12', 'Pop', 'Adele', 'gfg'),
-(3, '21', 11, '2020-12-12', 'Pop', 'Adele', ''),
-(4, '21', 11, '2020-12-12', 'Pop', 'Adele', ''),
-(5, '21', 11, '2020-12-12', 'Pop', 'Adele', ''),
-(7, 'Malekgd', 22, '2017-01-01', 'dfsd', 'ff', 'fgdg');
+  `genre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `artist` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image_album` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -55,17 +44,12 @@ INSERT INTO `albums` (`id`, `title`, `number_of_songs`, `release_date`, `genre`,
 --
 
 CREATE TABLE `article` (
-  `id` int(8) NOT NULL,
-  `Titre` varchar(20) NOT NULL,
-  `Description` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `article`
---
-
-INSERT INTO `article` (`id`, `Titre`, `Description`) VALUES
-(3, 'llll', 'dkzjqdfjeqjfqzjfo');
+  `id` int(11) NOT NULL,
+  `Titre` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Description` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_user_id` int(11) NOT NULL,
+  `rating` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -84,7 +68,7 @@ CREATE TABLE `doctrine_migration_versions` (
 --
 
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
-('DoctrineMigrations\\Version20220415090216', '2022-04-15 11:02:31', 58);
+('DoctrineMigrations\\Version20220510173217', '2022-05-10 19:32:25', 316);
 
 -- --------------------------------------------------------
 
@@ -93,11 +77,12 @@ INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_
 --
 
 CREATE TABLE `event` (
-  `IdEvent` int(8) NOT NULL,
-  `NomEvent` varchar(10) NOT NULL,
-  `LocalisationEvent` varchar(10) NOT NULL,
-  `DateEvent` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `IdEvent` int(11) NOT NULL,
+  `NomEvent` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nomArtiste` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `LocalisationEvent` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `DateEvent` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -106,18 +91,12 @@ CREATE TABLE `event` (
 --
 
 CREATE TABLE `nouveautes` (
-  `id` int(8) NOT NULL,
-  `Titre` varchar(20) NOT NULL,
-  `Description` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `nouveautes`
---
-
-INSERT INTO `nouveautes` (`id`, `Titre`, `Description`) VALUES
-(1, '1111', '21231321'),
-(2, '1111', '21231321');
+  `id` int(11) NOT NULL,
+  `titre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rating` int(11) NOT NULL,
+  `userid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -126,12 +105,24 @@ INSERT INTO `nouveautes` (`id`, `Titre`, `Description`) VALUES
 --
 
 CREATE TABLE `organisateur` (
-  `IdOrganisateur` int(8) NOT NULL,
-  `NomOrganisateur` varchar(10) NOT NULL,
-  `PrenomOrganisateur` varchar(10) NOT NULL,
-  `UsernameOrganisateur` varchar(10) NOT NULL,
-  `MdpOrganisateur` int(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `IdOrganisateur` int(11) NOT NULL,
+  `NomOrganisateur` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `PrenomOrganisateur` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `UsernameOrganisateur` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `MdpOrganisateur` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `participation`
+--
+
+CREATE TABLE `participation` (
+  `idauditeur` int(11) DEFAULT NULL,
+  `IdParticipation` int(11) NOT NULL,
+  `IdEventParticipation` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -140,11 +131,11 @@ CREATE TABLE `organisateur` (
 --
 
 CREATE TABLE `produits` (
-  `id` int(8) NOT NULL,
-  `prix` float NOT NULL,
-  `nom` varchar(10) NOT NULL,
-  `description` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id` int(11) NOT NULL,
+  `prix` double NOT NULL,
+  `nom` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -153,25 +144,11 @@ CREATE TABLE `produits` (
 --
 
 CREATE TABLE `promotions` (
-  `id` int(8) NOT NULL,
-  `pourcentage` int(8) NOT NULL,
-  `duree` int(8) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `promotions`
---
-
-INSERT INTO `promotions` (`id`, `pourcentage`, `duree`) VALUES
-(1, 43540, 10),
-(2, 43540, 10),
-(3, 43540, 15),
-(4, 43540, 15),
-(5, 43540, 15),
-(6, 43540, 15),
-(7, 12, 120),
-(8, 12, 120),
-(9, 12, 120);
+  `id` int(11) NOT NULL,
+  `id_prod_id` int(11) NOT NULL,
+  `pourcentage` int(11) NOT NULL,
+  `duree` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -181,9 +158,26 @@ INSERT INTO `promotions` (`id`, `pourcentage`, `duree`) VALUES
 
 CREATE TABLE `quiz` (
   `id` int(11) NOT NULL,
-  `resultat` int(11) NOT NULL,
-  `duree` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `question` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `reponse` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `duree` int(11) NOT NULL,
+  `idPromo` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reset_password_request`
+--
+
+CREATE TABLE `reset_password_request` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `selector` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hashed_token` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `requested_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
+  `expires_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -192,23 +186,15 @@ CREATE TABLE `quiz` (
 --
 
 CREATE TABLE `singles` (
-  `id` int(8) NOT NULL,
-  `artist` varchar(255) NOT NULL,
-  `single_name` varchar(255) NOT NULL,
+  `id` int(11) NOT NULL,
+  `albums_id` int(11) DEFAULT NULL,
+  `artist` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `single_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `release_date` date NOT NULL,
-  `genre` varchar(255) NOT NULL,
-  `image_single` varchar(255) NOT NULL,
-  `audio_single` varchar(255) NOT NULL,
-  `albums_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `singles`
---
-
-INSERT INTO `singles` (`id`, `artist`, `single_name`, `release_date`, `genre`, `image_single`, `audio_single`, `albums_id`) VALUES
-(1, 'fgfh', 'fdgdg', '2017-01-01', 'pop', 'fdsf', 'fdsfd', NULL),
-(2, 'gdfgd', 'fdgdg', '2017-01-01', 'ddgd', 'dsf', 'gdgd', NULL);
+  `genre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image_single` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `audio_single` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -217,9 +203,9 @@ INSERT INTO `singles` (`id`, `artist`, `single_name`, `release_date`, `genre`, `
 --
 
 CREATE TABLE `ticket` (
-  `IdTicket` int(8) NOT NULL,
-  `ReferenceTicket` int(8) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `IdTicket` int(11) NOT NULL,
+  `ReferenceTicket` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -228,10 +214,11 @@ CREATE TABLE `ticket` (
 --
 
 CREATE TABLE `titres` (
-  `id` int(8) NOT NULL,
-  `nom` varchar(10) NOT NULL,
-  `artiste` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id` int(11) NOT NULL,
+  `nom` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rating` double NOT NULL,
+  `artiste` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -240,15 +227,16 @@ CREATE TABLE `titres` (
 --
 
 CREATE TABLE `user` (
-  `id` int(10) NOT NULL,
-  `mail` varchar(30) NOT NULL,
-  `username` varchar(30) NOT NULL,
-  `mdp` varchar(30) NOT NULL,
-  `nom` varchar(30) NOT NULL,
-  `prenom` varchar(30) NOT NULL,
-  `age` int(10) NOT NULL,
-  `sexe` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_user` int(11) NOT NULL,
+  `mdp` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nom` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `prenom` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `role` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `numtel_user` int(11) DEFAULT NULL,
+  `adresse_user` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `connected` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Indexes for dumped tables
@@ -291,6 +279,15 @@ ALTER TABLE `organisateur`
   ADD PRIMARY KEY (`IdOrganisateur`);
 
 --
+-- Indexes for table `participation`
+--
+ALTER TABLE `participation`
+  ADD PRIMARY KEY (`IdParticipation`),
+  ADD KEY `IdEventParticipation` (`IdEventParticipation`,`idauditeur`),
+  ADD KEY `IdAuditeur` (`idauditeur`),
+  ADD KEY `IDX_AB55E24FD54BF72C` (`IdEventParticipation`);
+
+--
 -- Indexes for table `produits`
 --
 ALTER TABLE `produits`
@@ -300,13 +297,21 @@ ALTER TABLE `produits`
 -- Indexes for table `promotions`
 --
 ALTER TABLE `promotions`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `UNIQ_EA1B3034DF559605` (`id_prod_id`);
 
 --
 -- Indexes for table `quiz`
 --
 ALTER TABLE `quiz`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `reset_password_request`
+--
+ALTER TABLE `reset_password_request`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_7CE748AA76ED395` (`user_id`);
 
 --
 -- Indexes for table `singles`
@@ -331,7 +336,7 @@ ALTER TABLE `titres`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_user`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -341,43 +346,49 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `albums`
 --
 ALTER TABLE `albums`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `article`
 --
 ALTER TABLE `article`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `IdEvent` int(8) NOT NULL AUTO_INCREMENT;
+  MODIFY `IdEvent` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `nouveautes`
 --
 ALTER TABLE `nouveautes`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `organisateur`
 --
 ALTER TABLE `organisateur`
-  MODIFY `IdOrganisateur` int(8) NOT NULL AUTO_INCREMENT;
+  MODIFY `IdOrganisateur` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `participation`
+--
+ALTER TABLE `participation`
+  MODIFY `IdParticipation` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `produits`
 --
 ALTER TABLE `produits`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `promotions`
 --
 ALTER TABLE `promotions`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `quiz`
@@ -386,32 +397,57 @@ ALTER TABLE `quiz`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `reset_password_request`
+--
+ALTER TABLE `reset_password_request`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `singles`
 --
 ALTER TABLE `singles`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `ticket`
 --
 ALTER TABLE `ticket`
-  MODIFY `IdTicket` int(8) NOT NULL AUTO_INCREMENT;
+  MODIFY `IdTicket` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `titres`
 --
 ALTER TABLE `titres`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `participation`
+--
+ALTER TABLE `participation`
+  ADD CONSTRAINT `FK_AB55E24F2CA3331E` FOREIGN KEY (`idauditeur`) REFERENCES `user` (`id_user`),
+  ADD CONSTRAINT `FK_AB55E24FD54BF72C` FOREIGN KEY (`IdEventParticipation`) REFERENCES `event` (`IdEvent`);
+
+--
+-- Constraints for table `promotions`
+--
+ALTER TABLE `promotions`
+  ADD CONSTRAINT `FK_EA1B3034DF559605` FOREIGN KEY (`id_prod_id`) REFERENCES `produits` (`id`);
+
+--
+-- Constraints for table `reset_password_request`
+--
+ALTER TABLE `reset_password_request`
+  ADD CONSTRAINT `FK_7CE748AA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`);
 
 --
 -- Constraints for table `singles`
