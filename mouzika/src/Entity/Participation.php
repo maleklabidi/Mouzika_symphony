@@ -58,18 +58,14 @@ class Participation
         return $this;
     }
 
-    /**
-     * @return \User
-     */
-    public function getId(): ?\User
+
+    public function getId(): ?User
     {
         return $this->id;
     }
 
-    /**
-     * @param \User $id
-     */
-    public function setId(\User $id): self
+
+    public function setId(?User $id): self
     {
         $this->id = $id;
         return $this;

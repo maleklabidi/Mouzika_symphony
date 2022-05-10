@@ -69,7 +69,7 @@ class ParticipationController extends AbstractController
             $user = $entityManager
             ->getRepository(User::class)
             ->find(1); /// $this->>getUser();
-            $participation->setIdauditeur($user);
+            $participation->setId($user);
             $participation->setIdeventparticipation($events);
             $entityManager->persist($participation);
             $entityManager->flush();
