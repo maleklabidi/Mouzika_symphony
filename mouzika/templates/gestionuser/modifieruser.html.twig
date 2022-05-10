@@ -1,0 +1,132 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="page-header">
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ path('user_list')}}">User</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Ajouter User</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row">
+        <div class="col-12 grid-margin">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Ajouter un User</h4>
+                    {{ form_start(form,{attr:{novalidate:'novalidate'}})    }}
+                    <form class="form-sample" method="post">
+                        <p class="card-description">  </p>
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Nom</label>
+                                    <div class="col-sm-9">
+
+                                        {{ form_widget(form.nom, { 'attr': {'class': 'form-control',
+                                            'placeholder' : 'Nom...'} }) }}
+                                        {{ form_errors(form.nom, { 'attr': {'class': 'text-danger'} }) }}
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Prenom</label>
+                                    <div class="col-sm-9">
+
+                                        {{ form_widget(form.prenom, { 'attr': {'class': 'form-control',
+                                            'placeholder' : 'Prenom...'} }) }}
+                                        {{ form_errors(form.prenom, { 'attr': {'class': 'text-danger'} }) }}
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Mdp</label>
+                                    <div class="col-sm-9">
+
+                                        {{ form_widget(form.mdp, { 'attr': {'class': 'form-control',
+                                            'placeholder' : 'MDP...'} }) }}
+                                        {{ form_errors(form.mdp, { 'attr': {'class': 'text-danger'} }) }}
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">votre numéro de téléphone</label>
+                                    <div class="col-sm-9">
+
+                                        {{ form_widget(form.numtel_user, { 'attr': {'class': 'form-control',
+                                            'placeholder' : 'Num tel ...'} }) }}
+                                        {{ form_errors(form.numtel_user, { 'attr': {'class': 'text-danger'} }) }}
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Email</label>
+                                    <div class="col-sm-9">
+                                        {{ form_widget(form.email, { 'attr': {'class': 'form-control',
+                                            'placeholder' : 'Email...'} }) }}
+                                        {{ form_errors(form.email, { 'attr': {'class': 'text-danger'} }) }}
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">votre adresse</label>
+                                    <div class="col-sm-9">
+                                        {{ form_widget(form.adresse_user, { 'attr': {'class': 'form-control',
+                                            'placeholder' : 'adresse...'} }) }}
+                                        {{ form_errors(form.adresse_user, { 'attr': {'class': 'text-danger'} }) }}
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label"></label>
+                                    <div class="col-sm-9">
+                                        {{ form_widget(form.Save, { 'attr': {'class': 'form-control'} }) }}
+                                        {{ form_row(form._token) }}
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- content-wrapper ends -->
+    <!-- partial:../../partials/_footer.html -->
+
+    <!-- partial -->
+
+{% endblock %}

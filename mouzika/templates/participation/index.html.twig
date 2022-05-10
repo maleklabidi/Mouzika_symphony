@@ -1,0 +1,25 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %} List De Participation {% endblock %}
+
+{% block body %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Event</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for participation in participations %}
+            <tr>
+                <td>{{ participation.ideventparticipation.nomevent }}</td>
+                <td>{{ participation.idauditeur.nom }}</td>
+            </tr>
+
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

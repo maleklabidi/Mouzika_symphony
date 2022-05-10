@@ -1,0 +1,49 @@
+{% extends 'basefront.html.twig' %}
+
+{% block body %}
+    {{ form_start(connexion) }}
+    <br><br><br><br><br><br><br>
+    <main class="site-content login-page" id="wrapper">
+        <div  align="center">
+            <div class="col-md-6">
+                <h2 class="h4">Login</h2>
+                <form action="#" class="form login-form">
+                    <div class="form-group">
+                        <div >{{ form_row(connexion.email,{"attr":{'class':'form-control form-control-lg'},"label":"Votre Email"}) }}</div>
+                    </div>
+                    <div class="form-group">
+                        <div >{{ form_row(connexion.mdp,{"attr":{'class':'form-control form-control-lg'},"label":"Votre Mot de passe"}) }}</div>
+                    </div>
+                    <div class="form-group d-flex justify-content-between align-items-center">
+
+                        <span class="password-reminder">
+
+<a href="{{path('app_forgot_password_request')}}">Forgot password?</a>
+							</span>
+                    </div>
+                    <div >
+                        <input type="submit" class="btn btn-primary text-center" value="login">
+                    </div>
+                    <div class="login-form__info">d'ont have an account ?</div>
+                    <div class="login-form__info">what are you waiting for?</div>
+
+                    <a href="ajouteruser" class="btn btn-primary text-center">
+                       &nbsp;</i>Sign Up
+                    </a>
+
+                </form>
+
+            </div>
+        </div>
+
+        <div >
+            {{ form_widget(connexion) }}
+        </div>
+        {{ form_end(connexion) }}
+    </main>
+
+{% endblock %}
+
+
+
+

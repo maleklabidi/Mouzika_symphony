@@ -1,0 +1,123 @@
+{% extends 'basefront.html.twig' %}
+
+{% block title %}Hello GestionUSERController!{% endblock %}
+
+{% block body %}
+{% block contenpage %}
+
+
+
+            <h4 class="card-title">Admin</h4>
+            <p class="card-description"> Gestion des users <code>.table</code>
+            </p>
+            <section class="s-crossfit">
+                <div class="container">
+                    <h2>Search A User !!</h2>
+
+                    <div class="sidebar-search">
+
+                        <div class="input-group custom-search-form">
+
+                            <input type="text" id="search" class="form-control" placeholder="Search here">
+                        </div>
+                        <!-- /input-group -->
+                    </div>
+
+                    <div class="row" id="search">
+
+                    </div>
+                    <br><br><br><br>
+                </div>
+            </section>
+            <script src="{{ asset('assets/js/jquery.js') }}"></script>
+            <script
+                    src="{{ asset('https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js')}}">
+            </script>
+            <script>
+                $( document ).ready(function() {
+                    var currentRequest = null;
+                    $("#search").keyup(function(e){
+                        /* La variable value va prendre la valeur insérer dans le champ de texte
+                        afin d’effectuer la recherche */
+                        var value = $(this).val();
+                        if(currentRequest != null) {
+                            currentRequest.abort();
+                        }
+                        /* Ajax est lancé lors du remplissage du champ texte dont l’id est
+                        « search » pour faire la recherche */
+                        currentRequest = $.ajax({
+                            url : "{{ path('offreajax') }}",
+                            type : 'GET',
+                            data: {
+                                'searchValue' : value
+                            },
+                            success : function(retour)
+                            {
+                                $('#all').html(retour);
+                            },
+                        });
+                        return false;
+                    });
+                });
+            </script>
+            <div class="table-responsive">
+                {% if User %}
+                    <table id="User" class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nom</th>
+                            <th>Prenom</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Numero tel</th>
+                            <th>Adresse </th>
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for User in User %}
+                            <tr>
+                                <td>{{ User.id_user }}</td>
+
+                                <td>{{ User.nom }}</td>
+                                <td>{{ User.prenom }}</td>
+                                <td>{{ User.email }}</td>
+                                <td>{{ User.role }}</td>
+                                <td>{{ User.numtel_user }}</td>
+                                <td>{{ User.adresse_user }}</td>
+
+
+                                <td>
+
+                                    <a href="{{ path('edit_USER',{'id':User.id_user}) }}" class="btn btn-dark">Modifier</a>
+                                    <a href="{{ path('suppuser',{'id':User.id_user}) }}" class="btn btn-danger"
+                                       onclick="return confirm('Etes vous sûr de supprimer ce USER?');">Supprimer</a>
+
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                        <a class=" btn-primary " href="{{ path('listuser') }}">Creer pdf</a>
+                    </table>
+                    {{knp_pagination_render(User)}}
+                {% else %}
+                    <p>Aucun USER</p>
+                {% endif %}
+            </div>
+
+
+
+
+    <a href="{{path('trie3') }}"><i class="btn btn-primary" data-feather="arrow-up"></i>ascendant nom</a>
+    <a href="{{path('trie1') }}"><i class="btn btn-danger" data-feather="arrow-down"></i>ascendant prenom</a>
+    <a href="{{path('trie5') }}"><i class="btn btn-primary" data-feather="arrow-up"></i>ascendant email</a>
+    <a href="{{path('trie4') }}"><i class="btn btn-danger" data-feather="arrow-down"></i>descendant nom</a>
+    <a href="{{path('trie2') }}"><i class="btn btn-danger" data-feather="arrow-down"></i>descendant prenom</a>
+    <a href="{{path('trie6') }}"><i class="btn btn-danger" data-feather="arrow-down"></i>descendant email</a>
+    <div style="float:right;">
+
+    </div>
+{% endblock %}
+{% endblock %}

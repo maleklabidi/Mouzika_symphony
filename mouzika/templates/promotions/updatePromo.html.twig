@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+{% block title %}Modifier une promotion{% endblock %}
+{% block body %}
+    <div style="display:flex;align-items: center;justify-content: center; margin-top: 150px; padding: 10px">
+
+        <div class="card">
+            <a href="{{ path('') }}"><i class="arrow-back" style="font-size: 50px;"></i> </a>
+            <div class="card-header">Promotions</div>
+            <div class="card-body">
+                <div class="card-title">
+                    <h3 class="text-center title-2">Modifier une promotion</h3>
+                </div>
+                <hr>
+                {{ form_start(f) }}
+
+                <div class="form-group">
+                    <label for="cc-payment" class="control-label mb-1">Pourcentage</label>
+                    <div id="cc-pament" name="cc-payment" class="form-control">
+                        {{ form_widget(f.pourcentage,{'attr':{'class':'form-control'}}) }}
+                        {{ form_errors(f.pourcentage,{'attr':{'class':'text-danger'}}) }}
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label for="cc-payment" class="control-label mb-1">Durée</label>
+                    <div id="cc-pament" name="cc-payment" class="form-control">
+                        {{ form_widget(f.duree,{'attr':{'class':'form-control'}}) }}
+                        {{ form_errors(f.duree,{'attr':{'class':'text-danger'}}) }}
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label for="cc-payment" class="control-label mb-1">ID du Produit</label>
+                    <div id="cc-pament" name="cc-payment" class="form-control">
+                        {{ form_widget(f.idProd,{'attr':{'placeholder':'ID'}}) }}
+                    </div>
+
+                </div>
+
+                <br/>
+                <div>
+                    <div id="payment-button"  class="btn btn-lg btn-info btn-block">
+                        <i class="fa fa-lock fa-lg"></i>&nbsp;
+                        {{ form_widget(f.ajouter,{'att':{'class':'btn btn-primary'}}) }}
+                    </div>
+                </div>
+                {{ form_end(f) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,25 @@
+
+{% extends 'basefront.html.twig' %}
+
+{% block title %} Details  Event {% endblock %}
+
+{% block body %}
+
+    <div class="col-xl-4 col-lg-6 grid-item cat2 col-md-6">
+                <div class="about_thumb">
+                    <img class="img-fluid" src="{{ asset('front/img/gallery/5.png') }}" alt="">
+                </div>
+            </div>
+    <div class="col-xl-4 col-lg-6 grid-item cat2 col-md-6">
+                <div class="about_info">
+                    <h3>{{ event.nomevent }}</h3>
+                    <strong>Nom Artiste :{{ event.nomartiste }}<br></strong>
+                    <strong> Localistaion :{{ event.localisationevent }}<br></strong>
+                    <strong> Date :{{ event.dateevent ? event.dateevent|date('Y-m-d') : '' }}<br><br><br><br><br></strong>
+
+                        <a href="{{ path('participation_new', {'ide': event.idevent}) }}"  class="btn btn-secondary">Participer</a>
+
+                </div>
+            </div>
+
+{% endblock %}

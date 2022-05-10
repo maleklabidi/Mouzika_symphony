@@ -49,5 +49,58 @@ class Organisateur
      */
     private $mdporganisateur;
 
+    public function getIdorganisateur(): ?int
+    {
+        return $this->idorganisateur;
+    }
+
+    public function getNomorganisateur(): ?string
+    {
+        return $this->nomorganisateur;
+    }
+
+    public function setNomorganisateur(string $nomorganisateur): self
+    {
+        $this->nomorganisateur = $nomorganisateur;
+
+        return $this;
+    }
+
+    public function getPrenomorganisateur(): ?string
+    {
+        return $this->prenomorganisateur;
+    }
+
+    public function setPrenomorganisateur(string $prenomorganisateur): self
+    {
+        $this->prenomorganisateur = $prenomorganisateur;
+
+        return $this;
+    }
+
+    public function getUsernameorganisateur(): ?string
+    {
+        return $this->usernameorganisateur;
+    }
+
+    public function setUsernameorganisateur(string $usernameorganisateur): self
+    {
+        $this->usernameorganisateur = $usernameorganisateur;
+
+        return $this;
+    }
+
+    public function getMdporganisateur(): ?int
+    {
+        return $this->mdporganisateur;
+    }
+
+    public function setMdporganisateur(int $mdporganisateur): self
+    {
+        $this->mdporganisateur = $mdporganisateur;
+
+        return $this;
+    }
+
 
 }

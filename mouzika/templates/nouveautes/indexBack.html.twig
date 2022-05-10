@@ -1,0 +1,78 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}Nouveautes index{% endblock %}
+
+{% block body %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
+
+    <h1>Nouveautes index</h1>
+    <input type="text" id="search" name="search" class="form-control" placeholder="Search by ....">
+
+    <table class="table" id="tableac">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Rating</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        {% for nouveaute in nouveautes %}
+            <tr>
+                <td>{{ nouveaute.id }}</td>
+                <td>{{ nouveaute.titre }}</td>
+                <td>{{ nouveaute.description }}</td>
+                <td>{{ nouveaute.rating }}</td>
+                <td>
+                    <a href="{{ path('app_nouveautes_show', {'id': nouveaute.id}) }}">show</a>
+                    <a href="{{ path('app_nouveautes_edit', {'id': nouveaute.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div id="div_chart"></div>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        {{ gc_draw(piechart, 'div_chart') }}
+    </script>
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#search').keyup(function(){
+                search_table($(this).val());
+            });
+            function search_table(value){
+                $('#tableac tbody tr').each(function(){
+                    var found = 'false';
+                    $(this).each(function(){
+                        if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+                        {
+                            found = 'true';
+                        }
+                    });
+                    if(found === 'true')
+                    {
+                        $(this).show();
+
+                    }
+                    else
+                    {
+                        $(this).hide();
+
+                    }
+                });
+            }
+        });
+    </script>
+    <a href="{{ path('app_nouveautes_new') }}">Create new</a>
+{% endblock %}

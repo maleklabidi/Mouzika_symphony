@@ -2,45 +2,88 @@
 
 namespace App\Entity;
 
+use App\Repository\ProduitsRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
- * Produits
- *
- * @ORM\Table(name="produits")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=ProduitsRepository::class)
  */
 class Produits
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var float
-     *
-     * @ORM\Column(name="prix", type="float", precision=10, scale=0, nullable=false)
+     * @ORM\Column(type="float")
      */
     private $prix;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="nom", type="string", length=10, nullable=false)
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 4,
+     *      max = 20,
+     *      minMessage = "The name must be at least {{ limit }} characters long",
+     *      maxMessage = "The name  cannot be longer than {{ limit }} characters",
+     *      allowEmptyString = false)
      */
     private $nom;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="description", type="string", length=50, nullable=false)
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 4,
+     *      max = 20,
+     *      minMessage = "The description must be at least {{ limit }} characters long",
+     *      maxMessage = "The description  cannot be longer than {{ limit }} characters",
+     *      allowEmptyString = false)
      */
     private $description;
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
+    public function getPrix(): ?float
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(float $prix): self
+    {
+        $this->prix = $prix;
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
 }

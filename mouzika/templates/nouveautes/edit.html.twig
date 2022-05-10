@@ -1,0 +1,15 @@
+{% extends 'base-back.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}Edit Nouveautes{% endblock %}
+
+{% block body %}
+    <h1>Edit Nouveautes</h1>
+    {{ form_start(form, {attr: {'novalidate': 'novalidate'}}) }}
+
+    {{ include('nouveautes/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_nouveautes_index') }}">back to list</a>
+
+    {{ include('nouveautes/_delete_form.html.twig') }}
+{% endblock %}

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Albums;
+use App\Entity\Singles;
 use App\Form\AlbumsType;
 use App\Repository\AlbumsRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -71,20 +72,20 @@ class AlbumsController extends AbstractController
 
 //SECOND SMS
 
-            //$sid = 'AC2574409f5bcff86a96bbb6df2b408dbd';
-            //$token = '7bee95769514a91b6d62f8499c1e0a7d';
-            //$client = new Client($sid, $token);
+         //   $sid = 'AC2574409f5bcff86a96bbb6df2b408dbd';
+           /// $token = '7bee95769514a91b6d62f8499c1e0a7d';
+          //  $client = new Client($sid, $token);
 
 // Use the client to do fun stuff like send text messages!
-           // $client->messages->create(
+         //   $client->messages->create(
             // the number you'd like to send the message to
-              //  '+21650607032',
+               // '+21692236925',
               //  [
                     // A Twilio phone number you purchased at twilio.com/console
-                   // 'from' => '+14454551887',
+                  //  'from' => '+14454551887',
                     // the body of the text message you'd like to send
-                  //  'body' => 'Album ajouté!']
-          //  );
+                 // 'body' => 'Album ajouté!']
+        ///  );
 
 
 
@@ -225,6 +226,7 @@ class AlbumsController extends AbstractController
             'piechart' => $pieChart
         ]);
     }
+
 
 
 

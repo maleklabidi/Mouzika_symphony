@@ -1,0 +1,20 @@
+<table class="table">
+    <thead>
+    <tr>
+        <th>Nom</th>
+        <th>Nom de l' Artiste</th>
+        <th>Localisation</th>
+        <th>Date</th>
+    </tr>
+    </thead>
+    <tbody id="rech">
+    {% for event in events %}
+        <tr>
+            <td>{{ event.nomevent }}</td>
+            <td>{{ event.nomartiste }}</td>
+            <td>{{ event.localisationevent }}</td>
+            <td>{{ event.dateevent ? event.dateevent|date('Y-m-d') : '' }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

@@ -1,0 +1,50 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %} Evenements   <a href="{{ path('pdf') }}"  class="btn btn-primary">Extracter en pdf</a>{% endblock %}
+{% block body %}
+    <a href="{{ path('pdf') }}"  class="btn btn-primary">Extracter en pdf</a>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#rech tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+    <input class="form-control" id="myInput" type="text" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Nom de l Artiste</th>
+                <th>Localisation</th>
+                <th>Date</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody id="rech">
+        {% for event in events %}
+            <tr>
+                <td>{{ event.nomevent }}</td>
+                <td>{{ event.nomartiste }}</td>
+                <td>{{ event.localisationevent }}</td>
+                <td>{{ event.dateevent ? event.dateevent|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('event_delete', {'id': event.idevent}) }}" class="btn btn-danger">Supprimer</a>
+                    <a href="{{ path('event_edit', {'idevent': event.idevent}) }}"  class="btn btn-primary">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

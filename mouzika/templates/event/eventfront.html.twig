@@ -1,0 +1,26 @@
+{% extends 'basefront.html.twig' %}
+
+{% block title %} Nos Evenements {% endblock %}
+
+{% block body %}
+      {% for event in events %}
+    <div class="col-xl-4 col-lg-6 grid-item cat2 col-md-6">
+        <div class="single-gallery mb-30">
+            <div class="portfolio-img">
+                <img src="{{ asset('front/img/gallery/5.png') }}" alt="">
+            </div>
+            <div class="gallery_hover">
+
+             <strong>Titre :{{ event.nomevent }}<br></strong>
+                <strong>Nom Artiste :{{ event.nomartiste }}<br></strong>
+                <strong> Localistaion :{{ event.localisationevent }}<br></strong>
+                <strong> Date :{{ event.dateevent ? event.dateevent|date('Y-m-d') : '' }}<br></strong>
+                <a href="{{ path('details_front', {'id': event.idevent}) }}"  class="btn btn-primary">Details</a>
+
+
+            </div>
+        </div>
+    </div>
+       {% endfor %}
+
+{% endblock %}

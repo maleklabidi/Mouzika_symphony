@@ -55,15 +55,18 @@
                                         <li><a class="active" href="index.html">home</a></li>
                                         <li><a href="about.html">About</a></li>
                                         <li><a href="track.html">tracks</a></li>
-                                        <li><a href="#">blog <i class="ti-angle-down"></i></a>
+                                        <li><a href="{{ path('deconnecter') }}">log out </a></li>
+
+                                        <li><a href="#">Evenements <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="blog.html">blog</a></li>
-                                                <li><a href="single-blog.html">single-blog</a></li>
+                                                <li><a href="{{ path('event_front') }}">Nos evenements</a></li>
+                                                <li><a href="{{ path('participation_mes') }}">Mes participations</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="#">pages <i class="ti-angle-down"></i></a>
+                                        <li><a href="#">Discographie <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="elements.html">elements</a></li>
+                                                <li><a href="{{ path('singles_front')  }}">Singles</a></li>
+                                                <li><a href="{{ path('albums_front')  }}">Albums</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="contact.html">Contact</a></li>

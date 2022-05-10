@@ -1,0 +1,114 @@
+{% extends 'basefront.html.twig' %}
+
+{% block body %}
+
+
+	<div  align="center">
+		<div class="col-12 grid-margin">
+			<div class="card">
+				<div class="card-body">
+					<h4 class="card-title">Register now</h4>
+					{{ form_start(formregister,{attr:{novalidate:'novalidate'}}) }}
+					<form class="form-sample" method="post">
+						<p class="card-description">  </p>
+						<div class="row">
+
+							<div class="col-md-6">
+								<div class="form-group row">
+									<label class="col-sm-3 col-form-label">Nom</label>
+									<div class="col-sm-9">
+
+										{{ form_widget(formregister.nom, { 'attr': {'class': 'form-control',
+											'placeholder' : 'Nom...'} }) }}
+										{{ form_errors(formregister.nom, { 'attr': {'class': 'text-danger'} }) }}
+
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group row">
+									<label class="col-sm-3 col-form-label">Prenom</label>
+									<div class="col-sm-9">
+
+										{{ form_widget(formregister.prenom, { 'attr': {'class': 'form-control',
+											'placeholder' : 'Prenom...'} }) }}
+										{{ form_errors(formregister.prenom, { 'attr': {'class': 'text-danger'} }) }}
+
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group row">
+									<label class="col-sm-3 col-form-label">Email</label>
+									<div class="col-sm-9">
+										{{ form_widget(formregister.email, { 'attr': {'class': 'form-control',
+											'placeholder' : 'Email...'} }) }}
+										{{ form_errors(formregister.email, { 'attr': {'class': 'text-danger'} }) }}
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group row">
+									<label class="col-sm-3 col-form-label">Votre mot de passe</label>
+									<div class="col-sm-9">
+										{{ form_widget(formregister.mdp, { 'attr': {'class': 'form-control',
+											'placeholder' : 'mot de passe...'} }) }}
+										{{ form_errors(formregister.mdp, { 'attr': {'class': 'text-danger'} }) }}
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group row">
+									<label class="col-sm-3 col-form-label">adresse user</label>
+									<div class="col-sm-9">
+										{{ form_widget(formregister.adresse_user, { 'attr': {'class': 'form-control',
+											'placeholder' : 'adresse user...'} }) }}
+										{{ form_errors(formregister.adresse_user, { 'attr': {'class': 'text-danger'} }) }}
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group row">
+									<label class="col-sm-3 col-form-label">numéro téléphone</label>
+									<div class="col-sm-9">
+										{{ form_widget(formregister.numtel_user, { 'attr': {'class': 'form-control',
+											'placeholder' : 'numéro téléphone...'} }) }}
+										{{ form_errors(formregister.numtel_user, { 'attr': {'class': 'text-danger'} }) }}
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+
+
+						<div class="row" align="center">
+
+							<div class="col-md-6" align="center">
+								<div class="form-group row" align="center" >
+									<label class="col-sm-3 col-form-label"></label>
+									<div class="col-sm-9" >
+										{{ form_widget(formregister.Save, { 'attr': {'class': 'form-control'} }) }}
+										{{ form_row(formregister._token) }}
+
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</form>
+					{{ form_end(formregister) }}
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+{% endblock %}
+

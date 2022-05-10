@@ -1,0 +1,57 @@
+{% extends 'basefront.html.twig' %}
+
+{% block title %}Titres index{% endblock %}
+
+{% block body %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
+<br><br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+    <h1>Titres index</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Prix</th>
+            <th>Nom</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <form method="post" action="{{ path('recherche') }}">
+            <label>Search</label>
+            <input type="text" name="search"><input type="submit" value="Recherche">
+        </form>
+        {% for produit in produits %}
+            <tr>
+                <td>{{ produit.id }}</td>
+                <td>{{ produit.prix }}</td>
+                <td>{{ produit.nom }}</td>
+                <td>{{ produit.description }}</td>
+
+                <td>
+                    <a href="{{ path('app_produits_show', {'id': produit.id}) }}">show</a>
+                    <a href="{{ path('app_produits_edit', {'id': produit.id}) }}">edit</a>
+                    <form method="post" action="{{ path('imprimer_index') }}">
+                        <input class="btn btn-success" type="submit" value="PDF">
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <form method="post" action="{{ path('tri') }}">
+        <input class="btn btn-success" type="submit" value="Tri">
+    </form>
+
+    <a href="{{ path('app_produits_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %} Modefier Evenement {% endblock %}
+
+
+{% block body %}
+    <div class="login-form">
+        {{ form_start(form) }}
+
+        <div class="form-group">
+            <label>Nom d'Evenement</label>
+            {{ form_widget(form.nomevent, { 'attr': {'class': 'au-input au-input--full'} }) }}
+            {{ form_errors(form.nomevent) }}
+        </div>
+        <div class="form-group">
+            <label>Nom de L'artiste</label>
+            {{ form_widget(form.nomartiste, { 'attr': {'class': 'au-input au-input--full'} }) }}
+            {{ form_errors(form.nomartiste) }}
+        </div>
+        <div class="form-group">
+            <label>Localisation</label>
+            {{ form_widget(form.localisationevent, { 'attr': {'class': 'au-input au-input--full'} }) }}
+            {{ form_errors(form.localisationevent) }}
+        </div>
+        <div class="form-group">
+            <label>Date</label>
+            {{ form_widget(form.dateevent, { 'attr': {'class': 'au-input au-input--full'} }) }}
+            {{ form_errors(form.dateevent) }}
+        </div>
+
+        <input type="submit" value="Enregistrer" class="btn btn-success" formnovalidate />
+
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

@@ -1,0 +1,60 @@
+
+
+{% block body %}
+<div class="fa fa-chevron-down">
+    <div class="dropdown-item">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h1 align="center">Liste des Users</h1>
+
+                    </div>
+                    <div class="card-body">
+
+                        <div class="table-responsive">
+
+                            {% if User %}
+                                <table  border="2" id="User" class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nom</th>
+                                        <th>Prenom</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Numero tel</th>
+                                        <th>Adresse </th>
+
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for User in User %}
+                                        <tr>
+                                            <td>{{ User.id_user }}</td>
+
+                                            <td>{{ User.nom }}</td>
+                                            <td>{{ User.prenom }}</td>
+                                            <td>{{ User.email }}</td>
+                                            <td>{{ User.role }}</td>
+                                            <td>{{ User.numtel_user }}</td>
+                                            <td>{{ User.adresse_user }}</td>
+
+
+
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            {% else %}
+                                <p>Aucun USER</p>
+                            {% endif %}
+                        </div>
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

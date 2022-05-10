@@ -1,0 +1,26 @@
+{% extends 'basefront.html.twig' %}
+
+{% block title %} Mes Participations {% endblock %}
+
+{% block body %}
+    {% for p in participations %}
+        <div class="col-xl-4 col-lg-6 grid-item cat2 col-md-6">
+            <div class="single-gallery mb-30">
+                <div class="portfolio-img">
+                    <img src="{{ asset('front/img/gallery/5.png') }}" alt="">
+                </div>
+                <div class="gallery_hover">
+
+                    <strong>Titre :{{ p.ideventparticipation.nomevent }}<br></strong>
+                    <strong>Nom Artiste :{{ p.ideventparticipation.nomartiste }}<br></strong>
+                    <strong> Localistaion :{{ p.ideventparticipation.localisationevent }}<br></strong>
+                    <strong> Date :{{ p.ideventparticipation.dateevent ? p.ideventparticipation.dateevent|date('Y-m-d') : '' }}<br></strong>
+                    <a href="{{ path('quitter', {'id': p.idparticipation}) }}"  class="btn btn-primary">Annuler</a>
+
+
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock %}

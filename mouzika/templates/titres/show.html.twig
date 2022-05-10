@@ -1,0 +1,30 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}Titres{% endblock %}
+
+{% block body %}
+    <h1>Titres</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ titre.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ titre.nom }}</td>
+            </tr>
+            <tr>
+                <th>Artiste</th>
+                <td>{{ titre.artiste }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_titres_index') }}">back to list</a>
+
+    <a href="{{ path('app_titres_edit', {'id': titre.id}) }}">edit</a>
+
+    {{ include('titres/_delete_form.html.twig') }}
+{% endblock %}

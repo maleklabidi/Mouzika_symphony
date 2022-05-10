@@ -1,0 +1,29 @@
+{% extends 'basefront.html.twig' %}
+
+{% block title %}Titres index{% endblock %}
+
+{% block body %}
+    <h1>Titres </h1>
+    {% for titre in titres %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
+    <div >
+        <div class="container mt-2" style="justify-content: space-between; " >
+        <div class="row">
+            <div class="col-md-3 col-sm-6 item">
+                <div class="card item-card card-block">
+                    <h4 class="card-title text-right"><i class="material-icons">{{ titre.id }}</i></h4>
+                    <img src="https://static.pexels.com/photos/7096/people-woman-coffee-meeting.jpg" alt="Photo of sunset">
+                    <h5 class="item-card-title mt-3 mb-3">{{ titre.nom }}</h5>
+                    <p class="card-text">{{ titre.artiste }}</p>
+                    <p class="card-text">{{ titre.rating|rating(5) }}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+        </div>
+    {% endfor %}
+
+
+{% endblock %}
